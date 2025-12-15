@@ -18,7 +18,7 @@ const provider = new JsonRpcProvider(RPC_URL);
 const wallet = new Wallet(PKEY, provider);
 
 const app = express();
-
+app.use(cors());
 app.get("/", (_req, res) => {
   res.send("Hello Express!");
 });
