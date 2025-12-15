@@ -1,4 +1,5 @@
 import express from "express";
+
 import {
   Contract,
   Wallet,
@@ -18,13 +19,17 @@ const provider = new JsonRpcProvider(RPC_URL);
 const wallet = new Wallet(PKEY, provider);
 
 const app = express();
+
 app.use(cors());
+app.use(express.json());
+
 app.get("/", (_req, res) => {
   res.send("Hello Express!");
 });
 
 app.post("/verify_score", async (req, res) => {
   try {
+    console.log(req.body);
     const { address, score } = req.body;
     console.log(address, score);
     const contract = new Contract(contract_address, abi, provider);
